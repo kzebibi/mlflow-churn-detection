@@ -1,0 +1,25 @@
+name: churn-detection
+
+
+python_env: python_env.yaml
+# conda_env: conda.yaml
+entry_points:
+  forest:
+    parameters:
+      n: {type: int, default: 350}
+      d: {type: int, default: 15}
+    command: "python forst_script.py {n} {d}"
+
+  logistic:
+    parameters:
+      c: {type: float, default: 2.5}
+      p: {type: str, default: 'l2'}
+    command: "python logistic_script.py {c} {p}"
+
+
+  xgboost:
+    parameters:
+      n: {type: int, default: 350}
+      lr: {type: float, default: .01}
+      d: {type: int, default: 15}
+    command: "python xgboost_script.py -n {n} -lr {lr} -d {d}"
