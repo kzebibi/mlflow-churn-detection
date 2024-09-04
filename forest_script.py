@@ -127,15 +127,15 @@ X_train_resmapled, y_train_resampled = over.fit_resample(X_train_final, y_train)
 # with open('metrics.txt', 'w') as f:
 #     pass
 
-
+mlflow.set_tracking_uri('http://localhost:5050/')
 def train_model(
     X_train, y_train, plot_name, n_estimators: int, max_depth: int, class_weight=None
 ):
     """A function to train model given the required train data"""
 
-    mlflow.set_experiment(experiment_name="churn-detection")
+    mlflow.set_experiment(experiment_name="churn-detection-db")
     with mlflow.start_run() as run:
-
+        mlflow.set_tracking_uri('http://localhost:5050/')
         mlflow.set_tag("clf", "forest")
         clf = RandomForestClassifier(
             n_estimators=n_estimators,

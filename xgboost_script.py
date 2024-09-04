@@ -110,7 +110,7 @@ X_train_resmapled, y_train_resampled = over.fit_resample(X_train_final, y_train)
 
 ## --------------------- Modeling ---------------------------- ##
 
-
+mlflow.set_tracking_uri('http://localhost:5050/')
 def train_model(
     X_train,
     y_train,
@@ -121,8 +121,9 @@ def train_model(
     scale=None,
 ):
 
-    mlflow.set_experiment(f"churn-detection")
+    mlflow.set_experiment(f"churn-detection-db")
     with mlflow.start_run() as run:
+        mlflow.set_tracking_uri('http://localhost:5050/')
         mlflow.set_tag("clf", "xgboost")
 
         # https://xgboost.readthedocs.io/en/latest/parameter.html#:~:text=scale_pos_weight%20%5Bdefault%3D1,%2C%20py3.

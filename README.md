@@ -209,5 +209,5 @@ Invoke-RestMethod -Uri "http://localhost:8000/invocations" -Method Post -Headers
 ```bash
 mlflow models serve -m "models:/forest_best_acc/Staging" --port 8080 --env-manager local
 
-
+mlflow server --host 0.0.0.0 --port 5050 --backend-store-uri mysql://root:jiji@localhost:3306/mlflow_logs --default-artifact-root ./mlruns
 ```
